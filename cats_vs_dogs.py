@@ -33,30 +33,8 @@ import pickle
 with open('catAndDogImagesWithLabels', 'rb') as f:
     catImagesWithLabels, dogImagesWithLabels = pickle.load(f)
 
-catsWithLabels = []
-dogsWithLabels = []
-
-for catImage in catImages:
-    catsWithLabels.append([0, catImage])
-    # catsWithLabels.append(catImage, 0)
-# counter = 0
-# for dogImage in dogImages:
-#     if counter == 0:
-#         dogsWithLabels[1] = dogImage
-#         counter += 1
-#     else:
-#         dogsWithLabels[1].append(dogImage)
-    # dogsWithLabels.append(dogImage, 1)
-
-print("length1", len(catsWithLabels))
-# print("length2", len(catsWithLabels))
-
-# print(catsWithLabels)
-# print(dogsWithLabels)
-
-
-# print("cats", catImages)
-# print("dogs", dogImages)
+print(len(catImagesWithLabels))
+print(len(dogImagesWithLabels))
 
 # ALGORITHM
 # -fit the algorithm with the data (train), using the X_train and y_train data
