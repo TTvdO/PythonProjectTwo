@@ -33,6 +33,8 @@ import pickle
 with open('Xy', 'rb') as f:
     X, y = pickle.load(f)
 
+print(len(X))
+print(len(y))
 
 # ALGORITHM
 # -fit the algorithm with the data (train), using the X_train and y_train data
