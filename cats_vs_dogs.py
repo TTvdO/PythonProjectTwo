@@ -30,19 +30,29 @@ import pickle
 # -find a way to display any of the images on your screen (catImages[0] for example)
 
 # get the cat and dog images out of the pickle state here
-with open('catAndDogImages', 'rb') as f:
-    catImages, dogImages = pickle.load(f)
+with open('catAndDogImagesWithLabels', 'rb') as f:
+    catImagesWithLabels, dogImagesWithLabels = pickle.load(f)
 
-# catsWithLabels = {}
-# dogsWithLabels = {}
+catsWithLabels = []
+dogsWithLabels = []
 
-# for catImage in catImages:
-#     catsWithLabels.append(catImage, 0)
+for catImage in catImages:
+    catsWithLabels.append([0, catImage])
+    # catsWithLabels.append(catImage, 0)
+# counter = 0
 # for dogImage in dogImages:
-#     dogsWithLabels.append(dogImage, 1)
+#     if counter == 0:
+#         dogsWithLabels[1] = dogImage
+#         counter += 1
+#     else:
+#         dogsWithLabels[1].append(dogImage)
+    # dogsWithLabels.append(dogImage, 1)
 
-# print(catsWithLabels[:5])
-# print(dogsWithLabels[:5])
+print("length1", len(catsWithLabels))
+# print("length2", len(catsWithLabels))
+
+# print(catsWithLabels)
+# print(dogsWithLabels)
 
 
 # print("cats", catImages)
