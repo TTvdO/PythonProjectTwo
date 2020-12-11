@@ -30,11 +30,20 @@ import pickle
 # -find a way to display any of the images on your screen (catImages[0] for example)
 
 # get the cat and dog images out of the pickle state here
-with open('catAndDogImagesWithLabels', 'rb') as f:
-    catImagesWithLabels, dogImagesWithLabels = pickle.load(f)
+with open('catAndDogImages', 'rb') as f:
+    catImages, dogImages = pickle.load(f)
 
-print(len(catImagesWithLabels))
-print(len(dogImagesWithLabels))
+print(len(catImages))
+print(len(dogImages))
+
+# now add both the cat and dog images to your list of features, a.k.a. your X. then shuffle X
+X = []
+X.append(catImages)
+print(len(X))
+X.append(dogImages)
+print(len(X))
+# X.shuffle()
+
 
 # ALGORITHM
 # -fit the algorithm with the data (train), using the X_train and y_train data

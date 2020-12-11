@@ -11,8 +11,8 @@ import pickle
 catImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Cat")
 dogImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Dog")
 
-catImagesWithLabels = []
-dogImagesWithLabels = []
+catImages = []
+dogImages = []
 
 counter = 0
 
@@ -36,8 +36,8 @@ for dogImage in dogImagesFolder[:-1]:
         pass
     counter += 1
 
-catImagesWithLabels = np.array(catImagesWithLabels)
-dogImagesWithLabels = np.array(dogImagesWithLabels)
+catImages = np.array(catImages)
+dogImages = np.array(dogImages)
 
-with open('catAndDogImagesWithLabels', 'wb') as f:
-    pickle.dump([catImagesWithLabels, dogImagesWithLabels], f)
+with open('catAndDogImages', 'wb') as f:
+    pickle.dump([catImages, dogImages], f)
