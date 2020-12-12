@@ -9,7 +9,7 @@ from PIL import Image
 from matplotlib import image
 from matplotlib import pyplot
 import pickle
-
+from sklearn.model_selection import train_test_split #, cross_validate
 
 # steps:
 
@@ -20,14 +20,18 @@ import pickle
 # -[X]make sure all the images are the same size by hardcoding the size to e.g. 50 by 50, just execute this step at the beginning of the loop
 # -[X]shuffle the data
 # -[X]assign variable X to all the attributes besides the label(the features), assign variable to all the labels of the data
-# -figure out how to format this data in order to pass it onto the algorithm that will classify the data
+# -[X]split your X and y into X_test, y_test, X_train, y_train
 
 # get the X data (features/input data) and y data (labels/targets) out of the pickle state here
 with open('Xy', 'rb') as f:
     X, y = pickle.load(f)
 
-print(len(X))
-print(len(y))
+# split the data up into training and testing data (in sample & out of sample data)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# now you have the data that you need. now it's time to figure out:
+# -[]how to pass this data properly to an algorithm
+# -[]which algorithm to select for training
 
 # ALGORITHM
 # -fit the algorithm with the data (train), using the X_train and y_train data
