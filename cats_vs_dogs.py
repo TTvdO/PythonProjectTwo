@@ -31,9 +31,15 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # now you have the data that you need. now it's time to figure out:
 # -[]how to pass this data properly to an algorithm
-# -[]which algorithm to select for training
+        # Xy is a numpy array filled with arrays right now. depending on the algorithm you're going to use, you might need to transform this data into a single array, 
+        # but you'd need to know which algorithm you're using first and find out how it wants to receive the data through scikit-learn docs and stackoverflow threads
+# -[X]which algorithm to select for training:
+    # Convolutional Neural Networks are the correct choice for image classification problems
+    # TODO: now to find out in which form this algorithm wants its data. I think it wants it as one big array, so you'd need to just put all the arrays together
+    # for every single 2d array, and then move on to the stuff listed under algorithm 
 
 # ALGORITHM
+# -create the model outline
 # -fit the algorithm with the data (train), using the X_train and y_train data
 # -predict the list of all the features, compared to the actual label values. a.k.a. use the predict method in which you pass the X_test and y_test
 # 

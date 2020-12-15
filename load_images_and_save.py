@@ -49,5 +49,5 @@ print(y[1])
 # catImages = np.array(catImages)
 # dogImages = np.array(dogImages)
 
-with open('Xy', 'wb') as f:
+with open('Xy2', 'wb') as f:
     pickle.dump([X, y], f)
