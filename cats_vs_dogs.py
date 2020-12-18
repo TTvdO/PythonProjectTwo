@@ -14,17 +14,17 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
 import tensorflow as tf
 
-# get the X data (features/input data) and y data (labels/targets) out of the pickle state here
-with open('Xy', 'rb') as f:
-    X, y = pickle.load(f)
+X = np.load('features.npy')
+y = np.load('labels.npy')
 
 # split the data up into training and testing data (in sample & out of sample data)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
 # so we can access the X_test and y_test data in our prediction class later. we need the same randomly chosen X_test and y_test values, because the algorithm
-# shouldn't have already seen the images that we are testing it on
-with open('X_train, X_test, y_train, y_test', 'wb') as f:
-    pickle.dump([X_train, X_test, y_train, y_test], f)
+# shouldn't have already seen the images that we are testing it on, a.k.a. we can't randomly shuffle the data again in the class where we predict, because then
+# images in our new testing data will have actually been part of our training data in this class
+np.save('X_test.npy', X_test)
+np.save('y_test.npy', y_test)
 
 # make sequential model, which we can add layers to and thus create the convolutional neural network we need to classify images
 model = Sequential()
@@ -66,8 +66,6 @@ model.add(Activation("sigmoid"))
 # compile, which readies the model for training
 model.compile(loss="binary_crossentropy", optimizer="adam", metrics=['accuracy'])
 
-# X = tf.ragged.constant(X).to_tensor()
-# y = tf.ragged.constant(y).to_tensor()
-model.fit(X_train, y_train, batch_size=32, epochs=3, validation_split=0.1)
+model.fit(X_train, y_train, batch_size=32, epochs=10)
 
 model.save('ConvolutionalNeuralNetworkV1.model')

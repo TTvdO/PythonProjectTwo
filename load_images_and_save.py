@@ -7,12 +7,11 @@ from PIL import Image
 from matplotlib import image
 from matplotlib import pyplot
 import pickle
+import random
 
 catImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Cat")
 dogImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Dog")
 
-catImages = []
-dogImages = []
 petImages = []
 
 counter = 0
@@ -23,8 +22,7 @@ for catImage in catImagesFolder[:-1]:
         catImage = cv2.cvtColor(catImage, cv2.COLOR_RGB2GRAY)
         catImageResized = cv2.resize(catImage, (48,48))
         catImageResized = catImageResized.reshape(-1)
-        catImageResized = np.array(catImageResized)
-        petImages.append([0, catImageResized])
+        petImages.append([catImageResized, 0])
     except Exception as e:
         pass
     counter += 1
@@ -35,19 +33,22 @@ for dogImage in dogImagesFolder[:-1]:
         dogImage = cv2.cvtColor(dogImage, cv2.COLOR_RGB2GRAY)
         dogImageResized = cv2.resize(dogImage, (48,48))
         dogImageResized = dogImageResized.reshape(-1)
-        dogImageResized = np.array(dogImageResized)
-        petImages.append([1, dogImageResized])
+        petImages.append([dogImageResized, 1])
     except Exception as e:
         pass
     counter += 1
-petImages = np.array(petImages)
-np.random.shuffle(petImages)
-print(petImages[1])
-X = petImages[:,1]
-# X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
+
+random.shuffle(petImages)
+
+X = []
+y = []
+
+for features, label in petImages:
+    X.append(features)
+    y.append(label)
+
+X = np.array(X).reshape(-1, 48, 48, 1)
 X = X/255.0
 
-y = petImages[:,0]
-
-with open('Xy', 'wb') as f:
-    pickle.dump([X, y], f)
+np.save('features.npy', X)
+np.save('labels.npy', y)

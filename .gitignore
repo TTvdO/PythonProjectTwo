@@ -41,6 +41,7 @@ debugpy*.log
 pydevd*.log
 nodeLanguageServer/**
 nodeLanguageServer.*/**
-catAndDogImages
-catAndDogImagesWithLabels
-Xy
+features.npy
+labels.npy
+X_test
+y_test
