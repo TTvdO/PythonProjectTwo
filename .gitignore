@@ -43,5 +43,5 @@ nodeLanguageServer/**
 nodeLanguageServer.*/**
 features.npy
 labels.npy
-X_test
-y_test
+X_test.npy
+y_test.npy
