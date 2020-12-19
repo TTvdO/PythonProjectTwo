@@ -46,11 +46,11 @@ def catsvsdogs(x_train2, y_train2, x_test2, y_test2, params):
 
     model.add(Conv2D(params['first_neuron_amount'], (3, 3), input_shape = (X.shape[1:])))
     model.add(Activation(params['first_activation']))
-    model.add(MaxPooling2D(pool_size=params['poolingsize']))
+    model.add(MaxPooling2D(pool_size=params['first_poolingsize']))
 
     model.add(Conv2D(params['second_neuron_amount'], (3, 3)))
     model.add(Activation(params['second_activation']))
-    model.add(MaxPooling2D(pool_size=params['poolingsize']))
+    model.add(MaxPooling2D(pool_size=params['second_poolingsize']))
 
     model.add(Flatten())
 
