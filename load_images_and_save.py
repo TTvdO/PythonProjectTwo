@@ -21,7 +21,7 @@ for catImage in catImagesFolder[:-1]:
         catImage = image.imread(f'C:/Users/Tim/Desktop/PetImages/Cat/{counter}.jpg')
         catImage = cv2.cvtColor(catImage, cv2.COLOR_RGB2GRAY)
         catImageResized = cv2.resize(catImage, (48,48))
-        catImageResized = catImageResized.reshape(-1)
+        # catImageResized = catImageResized.reshape(-1)
         petImages.append([catImageResized, 0])
     except Exception as e:
         pass
@@ -32,7 +32,7 @@ for dogImage in dogImagesFolder[:-1]:
         dogImage = image.imread(f'C:/Users/Tim/Desktop/PetImages/Dog/{counter}.jpg')
         dogImage = cv2.cvtColor(dogImage, cv2.COLOR_RGB2GRAY)
         dogImageResized = cv2.resize(dogImage, (48,48))
-        dogImageResized = dogImageResized.reshape(-1)
+        # dogImageResized = dogImageResized.reshape(-1)
         petImages.append([dogImageResized, 1])
     except Exception as e:
         pass
