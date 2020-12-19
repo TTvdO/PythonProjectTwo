@@ -1,0 +1,6 @@
+round_epochs,loss,accuracy,activation,batch_size,loss,neuron_amount,poolingsize
+10,0.023600855842232704,0.991847574710846,relu,8,binary_crossentropy,32,(1, 1)
+
+same settings also stood out on 3 epochs. havent tried that many diff combinations yet though, will let it run overnight to check more differing settings
+round_epochs,loss,accuracy,activation,batch_size,loss_function,neuron_amount,poolingsize
+3,0.4397799074649811,0.7931980490684509,relu,8,binary_crossentropy,32,(1, 1)

@@ -20,11 +20,14 @@ X = np.load('features.npy')
 y = np.load('labels.npy')
 
 params = {
-    'neuron_amount': [16, 32, 64, 128, 256],
-    'activation': ['relu', 'sigmoid', 'elu', 'softmax', 'tanh'],
-    'poolingsize': [(1,1), (2,2)],
-    'loss': ['binary_crossentropy', 'sparse_categorical_crossentropy'],
-    # 'optimizer': ['adam', 'sgd'],
+    'first_neuron_amount': [16, 32, 64, 128, 256],
+    'second_neuron_amount': [16, 32, 64, 128, 256],
+    'third_neuron_amount': [16, 32, 64, 128, 256],
+    'first_activation': ['relu', 'sigmoid', 'elu', 'softmax', 'tanh'],
+    'second_activation': ['relu', 'sigmoid', 'elu', 'softmax', 'tanh'],
+    'third_activation': ['relu', 'sigmoid', 'elu', 'softmax', 'tanh'],
+    'first_poolingsize': [(1,1), (2,2)],
+    'second_poolingsize': [(1,1), (2,2)],
     'batch_size': [8, 16, 32, 64]
 }
 
@@ -41,27 +44,29 @@ print(len(y_train))
 def catsvsdogs(x_train2, y_train2, x_test2, y_test2, params):
     model = Sequential()
 
-    model.add(Conv2D(params['neuron_amount'], (3, 3), input_shape = (X.shape[1:])))
-    model.add(Activation(params['activation']))
+    model.add(Conv2D(params['first_neuron_amount'], (3, 3), input_shape = (X.shape[1:])))
+    model.add(Activation(params['first_activation']))
     model.add(MaxPooling2D(pool_size=params['poolingsize']))
 
-    model.add(Conv2D(params['neuron_amount'], (3, 3)))
-    model.add(Activation(params['activation']))
+    model.add(Conv2D(params['second_neuron_amount'], (3, 3)))
+    model.add(Activation(params['second_activation']))
     model.add(MaxPooling2D(pool_size=params['poolingsize']))
 
     model.add(Flatten())
 
-    model.add(Dense(params['neuron_amount']))
-    model.add(Activation(params['activation']))
+    model.add(Dense(params['third_neuron_amount']))
+    model.add(Activation(params['third_activation']))
 
     model.add(Dense(1))
     model.add(Activation("sigmoid"))
 
-    model.compile(loss=params['loss'], optimizer='adam', metrics=['accuracy'])
+    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    out = model.fit(X_train, y_train, batch_size=32, epochs=10)
+    # out = model.fit(X_train, y_train, batch_size=32, epochs=10)
+    out = model.fit(x_train2, y_train2, batch_size=params['batch_size'], epochs=3)
 
     return out, model
 
-t = talos.Scan(x=X, y=y, params=params, model=catsvsdogs, experiment_name='test_talos')
-# t = talos.Scan(x=X_train, y=y_train, params=params, model=catsvsdogs, experiment_name='test_talos', x_val=X_test, y_val=y_test, val_split=0.0, shuffle=False)
+# t = talos.Scan(x=X, y=y, params=params, model=catsvsdogs, experiment_name='test_talos')
+# t = talos.Scan(x=X_train, y=y_train, params=params, model=catsvsdogs, experiment_name='test_talos2', x_val=X_test, y_val=y_test, val_split=0.0, round_limit=10)
+t = talos.Scan(x=X, y=y, params=params, model=catsvsdogs, experiment_name='test_talos2')
