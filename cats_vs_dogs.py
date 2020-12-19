@@ -34,7 +34,7 @@ model = Sequential()
 # 2. second argument Conv2D: kernel size. must be a tuple of odd integers with the same values. if input image > 128x128, consider (5,5) and (7,7)
 #       if input image < 128x128, consider (1,1) and (3,3)
 # 3. input_shape, which are the WxH of the image together with the amount of numbers representing each pixel (e.g. 3 for RGB images, 1 for grayscale images)
-model.add(Conv2D(32, (3, 3), input_shape = (48,48,1)))
+model.add(Conv2D(32, (3, 3), input_shape = (X.shape[1:])))
 # activation function "rectified linear" does this: negative number as input -> return 0 as output. positive number -> return the actual number as output
 # even though all the values of pixels aren't going to be negative, even when divided by 255, the nodes in each layer of the neural network will have not only
 # the inputs, but also their own randomly initialized weights. the inputs will be multiplied by these weights and could make your output negative. 
