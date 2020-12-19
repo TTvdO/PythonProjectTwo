@@ -1,0 +1,2 @@
+round_epochs,loss,accuracy,activation,batch_size,loss,neuron_amount,poolingsize
+10,0.3092811405658722,0.8811143636703491,relu,8,binary_crossentropy,16,(1, 1)

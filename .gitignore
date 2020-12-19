@@ -45,3 +45,5 @@ features.npy
 labels.npy
 X_test.npy
 y_test.npy
+test_talos
+ConvolutionalNeuralNetworkV1.model
