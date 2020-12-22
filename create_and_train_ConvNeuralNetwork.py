@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn import preprocessing
-from sklearn.model_selection import train_test_split #, cross_validate
+from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 

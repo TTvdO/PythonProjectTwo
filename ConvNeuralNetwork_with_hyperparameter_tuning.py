@@ -1,16 +1,6 @@
-import pandas as pd
 import numpy as np
-from sklearn import preprocessing
-import os
-import cv2
-from PIL import Image
-from matplotlib import image
-from matplotlib import pyplot
-import pickle
-from sklearn.model_selection import train_test_split
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
-import tensorflow as tf
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 import talos
 
 X = np.load('features.npy')
