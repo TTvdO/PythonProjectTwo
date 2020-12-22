@@ -47,4 +47,5 @@ X_test.npy
 y_test.npy
 test_talos
 test_talos2
+test_talos3
 ConvolutionalNeuralNetworkV1.model
