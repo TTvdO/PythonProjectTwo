@@ -28,8 +28,6 @@ params = {
     'batch_size': [8, 16, 32, 64]
 }
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
 def catsvsdogs(x_train2, y_train2, x_test2, y_test2, params):
     model = Sequential()
 
@@ -51,8 +49,7 @@ def catsvsdogs(x_train2, y_train2, x_test2, y_test2, params):
 
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-    # out = model.fit(X_train, y_train, batch_size=32, epochs=10)
-    out = model.fit(x_train2, y_train2, batch_size=params['batch_size'], epochs=15)
+    out = model.fit(x_train2, y_train2, batch_size=params['batch_size'], epochs=3)
 
     return out, model
 
