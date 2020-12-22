@@ -9,32 +9,31 @@ from matplotlib import pyplot
 import pickle
 import random
 
-catImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Cat")
-dogImagesFolder = os.listdir("C:/Users/Tim/Desktop/PetImages/Dog")
+IMAGESDIRECTORY = "C:/Users/Tim/Desktop/PetImages"
+IMG_SIZE = 48
+CATEGORIES = ["Dog", "Cat"]
 
 petImages = []
 
-counter = 0
+def load_images():
+    for category in CATEGORIES:
+        # path = os.path.join(IMAGESDIRECTORY, category)
+        path = f'{IMAGESDIRECTORY}/{category}'
+        classLabel = CATEGORIES.index(category)
+        currentImageFolder = os.listdir(path)
+        counter = 0
+        # loop through everything except for the last element (last element is a .db file)
+        for petImage in currentImageFolder[:-1]:
+            try:
+                petImage = image.imread(f'{IMAGESDIRECTORY}/{category}/{counter}.jpg')
+                petImage = cv2.cvtColor(petImage, cv2.COLOR_RGB2GRAY)
+                resizedPetImage = cv2.resize(petImage, (IMG_SIZE, IMG_SIZE))
+                petImages.append([resizedPetImage, classLabel])
+            except Exception as e:
+                pass
+            counter += 1
 
-for catImage in catImagesFolder[:-1]:
-    try:
-        catImage = image.imread(f'C:/Users/Tim/Desktop/PetImages/Cat/{counter}.jpg')
-        catImage = cv2.cvtColor(catImage, cv2.COLOR_RGB2GRAY)
-        catImageResized = cv2.resize(catImage, (48,48))
-        petImages.append([catImageResized, 0])
-    except Exception as e:
-        pass
-    counter += 1
-counter = 0
-for dogImage in dogImagesFolder[:-1]:
-    try:
-        dogImage = image.imread(f'C:/Users/Tim/Desktop/PetImages/Dog/{counter}.jpg')
-        dogImage = cv2.cvtColor(dogImage, cv2.COLOR_RGB2GRAY)
-        dogImageResized = cv2.resize(dogImage, (48,48))
-        petImages.append([dogImageResized, 1])
-    except Exception as e:
-        pass
-    counter += 1
+load_images()
 
 random.shuffle(petImages)
 
@@ -45,7 +44,7 @@ for features, label in petImages:
     X.append(features)
     y.append(label)
 
-X = np.array(X).reshape(-1, 48, 48, 1)
+X = np.array(X).reshape(-1, IMG_SIZE, IMG_SIZE, 1)
 X = X/255.0
 
 np.save('features.npy', X)

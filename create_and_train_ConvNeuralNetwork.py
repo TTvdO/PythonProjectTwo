@@ -1,18 +1,8 @@
-# python project two = classifying cats vs dogs with machine learning
-# import tensorflow as tf
-import pandas as pd
 import numpy as np
 from sklearn import preprocessing
-import os
-import cv2
-from PIL import Image
-from matplotlib import image
-from matplotlib import pyplot
-import pickle
 from sklearn.model_selection import train_test_split #, cross_validate
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D, MaxPooling2D
-import tensorflow as tf
+from tensorflow.keras.layers import Dense, Activation, Flatten, Conv2D, MaxPooling2D
 
 X = np.load('features.npy')
 y = np.load('labels.npy')
